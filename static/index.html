@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="js/bootstrap.bundle.min.js" ></script>
+
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="main container">
+
+            <div class="headerApp container">
+
+            <div class="row">
+                <div class="col-3"><p class="fw-bold">22:00</p></div>
+                <div class="col-6 dock"><div class="eyesCirlce"></div></div>
+                <div class="col-3">
+                    <div class="image-container">
+                        <img src="images/wifi.png" alt="Image 1" class="img-fluid iconH">
+                        <img src="images/battery.png" alt="Image 2" class="img-fluid iconH">
+                      </div>
+                      
+                </div>
+            </div>
+                
+
+            </div>
+
+            <div class="bodyApp container">
+
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-10 colorBlue"><p><i class="fa-regular fa-user"></i> Dame Sarr</p></div>
+                        <div class="col-2 colorBlue"><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i></div>
+                    </div>
+
+                    <div class="row">
+                        <h1 class="h1App">Contacts</h1>
+                    </div>
+
+                    <div class="row">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Recherche">
+                            <i class="fas fa-search" style="margin-left: -30px;"></i>
+                          </div>
+                    </div>
+
+                    <div class="container allContacts">
+                        <div class="row">
+                            <div class="container contact">
+                                  <img src="images/default_user.png" alt="Image" class="img-fluid" style="float: left;width: 70px;">
+                                  <div class="details">
+                                      <h5 style="margin: 0px;">Dame Sarr</h5>
+                                      <p class="pMin">77 543 43 43</p>
+                                      <p class="pMin">dede@gmail.com</p>
+                                  </div>
+                                  <div class="btnEditDelete">
+                                      <div class="d-flex justify-content-end align-items-center" style="margin-top: -23px;">
+                                          <a href="#" style="margin-right: 3px;"><i class="fas fa-trash-alt" style="color: #fb4646;"></i></a>
+                                          <a href="#"><i class="far fa-edit " data-bs-toggle="modal" data-bs-target="#modifierContactModal"></i></a>
+                                        </div>
+
+                                      
+                                  </div>
+                              </div>
+
+                              
+                              
+                        </div>
+                      </div>
+
+                </div>
+
+
+                
+
+
+            </div>
+
+            <div class="footerApp container">
+
+                <button type="button" style="border: 0px;" class="btn-App" data-bs-toggle="modal" data-bs-target="#ajouterContactModal">
+                    AJOUTER CONTACT
+                  </button>
+            </div>
+
+
+    </div>
+
+
+
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="ajouterContactModal" tabindex="-1" aria-labelledby="ajouterContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ajouterContactModalLabel">Ajouter Contact</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
+                </div>
+                <div class="mb-3">
+                  <label for="telephone" class="form-label">Numéro de téléphone</label>
+                  <input type="tel" class="form-control" id="telephone" placeholder="Entrez votre numéro de téléphone">
+                </div>
+                <input type="hidden" id="idUser" value="12345">
+                <button type="submit" class="btn btn-primary">AJOUTER CONTACT</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="modifierContactModal" tabindex="-1" aria-labelledby="modifierContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifierContactModalLabel">Modifier Contact</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
+                </div>
+                <div class="mb-3">
+                  <label for="telephone" class="form-label">Numéro de téléphone</label>
+                  <input type="tel" class="form-control" id="telephone" placeholder="Entrez votre numéro de téléphone">
+                </div>
+                <input type="hidden" id="idContact" value="12345">
+                <button type="submit" class="btn btn-warning">MODIFIER CONTACT</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+    
+</body>
+</html>

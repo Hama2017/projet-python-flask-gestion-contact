@@ -1,0 +1,114 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Connexion {% endblock %}
+
+{% block body %}
+<style>
+
+.bodyApp{
+margin-top: 70px;
+}
+  .form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container h3 {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .form-control:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .btn-primary {
+    background-color: #333;
+    border-color: #333;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #555;
+    border-color: #555;
+  }
+</style>
+          <div class="bodyApp container">
+
+
+              <div class="container">
+
+   {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger" role="alert">
+          {{ message }}
+        </div>
+      {% elif category == 'success' %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+                  <div class="row">
+                      <h1 class="h1App">Connexion</h1>
+                  </div>
+
+
+                      <form action="{{url_for('signin')}}" method="POST">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="nomU" id="username" placeholder="Nom d'utilisateur">
+                        </div>
+
+                        <div class="form-group">
+                          <input type="password" class="form-control" id="password" name="mdp" placeholder="Mot de passe">
+                        </div>
+                        <button type="submit" class="btn btn btn-App">SE CONNECTER</button>
+                      </form>
+
+                    <div style="margin-top:10px;">
+                        <p>Vous n'avez pas de compte ?</p>
+                        <a href="{{url_for('signup')}}" class="btn btn-App2" style="margin-top:5px;">S'INSCRIRE</a>
+                    </div>
+
+
+              </div>
+
+
+
+
+
+          </div>
+
+
+{% endblock %}

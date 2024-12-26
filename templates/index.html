@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block title %} Index {% endblock %}
+
+{% block body %}
+   <div class="bodyApp ">
+
+
+                <div class="">
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger" role="alert">
+          {{ message }}
+        </div>
+      {% elif category == 'success' %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+                    <div class="row">
+                        <div class="col-10 colorBlue"><p><i class="fa-regular fa-user"></i> {{sessionU['nomU']}} </p></div>
+                        <div class="col-2 colorBlue"><a href="{{url_for('logout')}}"><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i></a></div>
+                    </div>
+
+                    <div class="row">
+                        <h1 class="h1App">Contacts ({{totalC}})</h1>
+                    </div>
+
+                    <div class="row" style="padding: 10px;">
+                        <div class="search-bar">
+                            <input type="text" id="searchInput" placeholder="Recherche">
+                            <i class="fas fa-search" style="margin-left: -30px;"></i>
+                          </div>
+                    </div>
+
+                    <div class="scroller allContacts">
+                        {% for contact in contact %}
+
+
+  <div class="modal fade" id="modifierContactModal{{ contact.idC }}" tabindex="-1" aria-labelledby="modifierContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifierContactModalLabel">Modifier Contact</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{url_for('editerContact')}}" method="POST">
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" name="nomC" value="{{ contact.nomC }}"  placeholder="Entrez votre nom">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" value="{{ contact.email }}" placeholder="Entrez votre email">
+                </div>
+                <div class="mb-3">
+                  <label for="telephone" class="form-label">Numéro de téléphone</label>
+                  <input type="tel" class="form-control" id="telephone" name="num" value="{{ contact.num }}" placeholder="Entrez votre numéro de téléphone">
+                </div>
+                <input type="hidden" id="idC" name="idC" value="{{ contact.idC }}">
+                <input type="submit" class="btn btn-App" value="MODIFIER" >
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="border-radius:50px">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+                          <div class="row">
+                            <div class="contact contact-item container" id="contact-container" >
+                                  <img src="{{url_for('static',filename='images/default_user.png')}}" alt="Image" class="img-fluid" style="float: left;width: 70px;">
+                                  <div class="details">
+                                      <h5 style="margin: 0px;">{{ contact.nomC }}</h5>
+                                      <p class="pMin">{{ contact.num }}</p>
+                                      <p class="pMin">{{ contact.email }}</p>
+                                  </div>
+                                  <div class="btnEditDelete hidden">
+                                      <div class="d-flex justify-content-end align-items-center" style="margin-top: -23px;">
+                                          <a href="/delete/{{ contact.idC }}" style="margin-right: 10px;"><i class="fas fa-trash-alt" style="color: #fb4646;"></i></a>
+                                          <a href="#"><i class="far fa-edit " data-bs-toggle="modal" data-bs-target="#modifierContactModal{{ contact.idC }}"></i></a>
+                                        </div>
+
+                                  </div>
+                              </div>
+                        </div>
+
+                                 {% endfor %}
+
+                </div>
+            </div>
+
+            <div class="footerApp ">
+
+                <button type="button" style="border: 0px;" class="btn-App" data-bs-toggle="modal" data-bs-target="#ajouterContactModal">
+                    <i class="fa fa-user-plus"></i> AJOUTER CONTACT
+                  </button>
+            </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="ajouterContactModal" tabindex="-1" aria-labelledby="ajouterContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ajouterContactModalLabel">Ajouter Contact</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{url_for('ajouterContact')}}" method="POST">
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" name="nomC" placeholder="Entrez votre nom">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email">
+                </div>
+                <div class="mb-3">
+                  <label for="telephone" class="form-label">Numéro de téléphone</label>
+                  <input type="tel" class="form-control" id="telephone" name="num" placeholder="Entrez votre numéro de téléphone">
+                </div>
+                <button type="submit" class="btn-App btn">ENREGISTRER</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="border-radius:50px">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+       <script>
+  // Fonction de filtrage des contacts
+  function filterContacts() {
+    // Récupérer la valeur saisie dans la barre de recherche
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toUpperCase();
+
+    // Récupérer tous les éléments de contact
+    var contacts = document.getElementsByClassName('contact-item');
+
+    // Parcourir tous les contacts et afficher/cacher en fonction du filtre
+    for (var i = 0; i < contacts.length; i++) {
+      var contact = contacts[i];
+      var name = contact.querySelector('h5').innerText.toUpperCase();
+
+      if (name.indexOf(filter) > -1) {
+        contact.style.display = '';
+      } else {
+        contact.style.display = 'none';
+      }
+    }
+  }
+
+  // Ajouter un événement de saisie à la barre de recherche
+  var searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', filterContacts);
+
+
+  // Sélectionnez tous les containers de contact
+var contactContainers = document.querySelectorAll('.container.contact');
+
+// Parcourez chaque container de contact
+contactContainers.forEach(function(container) {
+  // Ajoutez un écouteur d'événement pour le survol de la souris
+  container.addEventListener('mouseenter', function() {
+    // Affichez la classe "btnEditDelete" lorsque le survol commence
+    container.querySelector('.btnEditDelete').classList.remove('hidden');
+  });
+
+  // Ajoutez un écouteur d'événement pour la fin du survol de la souris
+  container.addEventListener('mouseleave', function() {
+    // Masquez la classe "btnEditDelete" lorsque le survol est terminé
+    container.querySelector('.btnEditDelete').classList.add('hidden');
+  });
+});
+
+</script>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/custom.css')}}">
+    <script src="{{url_for('static',filename='js/bootstrap.bundle.min.js')}}" ></script>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <div class="main container-fluid">
+          <div class="headerApp container">
+
+            <div class="row">
+                <div class="col-3"><p class="fw-bold" id="heure"></p></div>
+                <div class="col-6 dock"><div class="eyesCirlce"></div></div>
+                <div class="col-3">
+                    <div class="image-container">
+                        <img src="{{url_for('static',filename='images/wifi.png')}}" alt="Image 1" class="img-fluid iconH">
+                        <img src="{{url_for('static',filename='images/battery.png')}}" alt="Image 2" class="img-fluid iconH">
+                      </div>
+
+                </div>
+            </div>
+
+
+            </div>
+{% block body %} {% endblock %}
+            </div>
+
+</body>
+
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}""> </script>
+
+<script>// Ferme les messages d'erreur automatiquement après 5 secondes
+setTimeout(function() {
+  let alertElements = document.querySelectorAll('.alert');
+  alertElements.forEach(function(alert) {
+    alert.classList.add('fade');
+    alert.classList.add('show');
+    setTimeout(function() {
+      alert.remove();
+    }, 1000);
+  });
+}, 3000);
+
+
+    function afficherHeure() {
+        var maintenant = new Date();
+        var heures = maintenant.getHours();
+        var minutes = maintenant.getMinutes();
+
+        heures = (heures < 10 ? "0" : "") + heures;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+
+        var heureCourante = heures + ":" + minutes;
+
+        document.getElementById("heure").textContent = heureCourante;
+    }
+
+    setInterval(afficherHeure, 1000); // Actualiser l'heure toutes les secondes
+
+</script>
+
+</html>
